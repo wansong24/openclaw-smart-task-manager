@@ -37,16 +37,30 @@ Instead of simply extending the timeout indefinitely, this system implements int
 
 ### Installation
 
+**One-Click Install (Recommended):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/wansong24/openclaw-smart-task-manager/main/install.sh | bash
+```
+
+Or using wget:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/wansong24/openclaw-smart-task-manager/main/install.sh | bash
+```
+
+**Manual Installation:**
+
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/openclaw-smart-task-manager.git
+git clone https://github.com/wansong24/openclaw-smart-task-manager.git
 cd openclaw-smart-task-manager
 
 # Run the optimization script
 chmod +x smart-task-manager.sh
 ./smart-task-manager.sh
 
-# Restart OpenClaw gateway services
+# Restart OpenClaw gateway services (macOS)
 launchctl bootout gui/$(id -u)/ai.openclaw.gateway
 launchctl bootout gui/$(id -u)/ai.openclaw-vi.gateway
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.gateway.plist
@@ -155,16 +169,30 @@ OpenClaw在执行大型复杂任务时可能会超时（默认10分钟）。
 
 ### 安装
 
+**一键安装（推荐）：**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/wansong24/openclaw-smart-task-manager/main/install.sh | bash
+```
+
+或使用wget：
+
+```bash
+wget -qO- https://raw.githubusercontent.com/wansong24/openclaw-smart-task-manager/main/install.sh | bash
+```
+
+**手动安装：**
+
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/openclaw-smart-task-manager.git
+git clone https://github.com/wansong24/openclaw-smart-task-manager.git
 cd openclaw-smart-task-manager
 
 # 运行优化脚本
 chmod +x smart-task-manager.sh
 ./smart-task-manager.sh
 
-# 重启OpenClaw gateway服务
+# 重启OpenClaw gateway服务（macOS）
 launchctl bootout gui/$(id -u)/ai.openclaw.gateway
 launchctl bootout gui/$(id -u)/ai.openclaw-vi.gateway
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.gateway.plist
