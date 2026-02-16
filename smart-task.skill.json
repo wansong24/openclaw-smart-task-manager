@@ -1,0 +1,41 @@
+{
+  "name": "smart-task",
+  "version": "1.0.0",
+  "description": "智能任务管理 - 自动分解大任务，防止超时",
+  "commands": {
+    "optimize": {
+      "description": "优化openclaw配置，启用智能任务管理",
+      "exec": "bash ~/.openclaw/scripts/smart-task-manager.sh"
+    },
+    "status": {
+      "description": "检查当前任务管理配置状态",
+      "exec": "bash -c 'echo \"实例1配置:\"; jq \".agents.defaults | {timeoutSeconds, compaction, contextPruning, model}\" ~/.openclaw/openclaw.json 2>/dev/null || echo \"配置文件不存在\"; echo \"\n实例2(Vi)配置:\"; jq \".agents.defaults | {timeoutSeconds, compaction, contextPruning, model}\" ~/.openclaw-vi/openclaw.json 2>/dev/null || echo \"配置文件不存在\"'"
+    },
+    "compact": {
+      "description": "手动触发上下文压缩",
+      "exec": "echo '请在聊天中使用 /compact 命令来压缩当前会话上下文'"
+    }
+  },
+  "prompts": {
+    "task-breakdown": "当收到大型任务时，自动评估并分解为多个小任务。每个小任务应在10-15分钟内完成。执行过程中定期使用 /compact 压缩上下文。",
+    "progress-tracking": "在 PROGRESS.md 中记录任务进度，包括：已完成的任务、当前任务、遇到的问题、下一步计划。"
+  },
+  "hooks": {
+    "before-large-task": {
+      "description": "大任务执行前的准备",
+      "actions": [
+        "评估任务复杂度",
+        "如果预计超过15分钟，分解任务",
+        "检查上下文使用情况，必要时执行 /compact"
+      ]
+    },
+    "on-timeout": {
+      "description": "超时时的处理",
+      "actions": [
+        "立即执行 /compact 压缩上下文",
+        "记录当前进度到 PROGRESS.md",
+        "从断点继续执行"
+      ]
+    }
+  }
+}

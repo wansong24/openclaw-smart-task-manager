@@ -1,0 +1,28 @@
+# Logs
+*.log
+
+# Backups
+*.backup
+*.bak
+*.bak.*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OpenClaw specific
+openclaw.json.backup-*
+auth-profiles.json
+credentials/
