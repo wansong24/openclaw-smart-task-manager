@@ -56,11 +56,8 @@ optimize_config() {
         # 启用自动压缩（safeguard模式）
         .agents.defaults.compaction.mode = "safeguard" |
 
-        # 配置上下文修剪
-        .agents.defaults.contextPruning = {
-            "mode": "cache-ttl",
-            "enabled": true
-        } |
+        # 配置上下文修剪（只设置mode，不设置enabled）
+        .agents.defaults.contextPruning.mode = "cache-ttl" |
 
         # 配置会话重置策略
         .session.reset = {

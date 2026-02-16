@@ -36,7 +36,16 @@ fix_config() {
         fixed=1
     fi
 
-    # 2. 删除其他不支持的字段
+    # 2. 如果 contextPruning 是对象且包含 enabled，转换为只保留 mode
+    if jq -e '.agents.defaults.contextPruning | type == "object" and has("enabled")' "$config_file" > /dev/null 2>&1; then
+        log "  修复: 重构 contextPruning 配置"
+        local mode=$(jq -r '.agents.defaults.contextPruning.mode // "cache-ttl"' "$config_file")
+        jq --arg mode "$mode" '.agents.defaults.contextPruning = {"mode": $mode}' "$config_file" > "${config_file}.tmp"
+        mv "${config_file}.tmp" "$config_file"
+        fixed=1
+    fi
+
+    # 3. 删除其他不支持的字段
     local invalid_keys=(
         ".agents.defaults.model.quickModel"
         ".agents.defaults.model.tiers"
