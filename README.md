@@ -33,6 +33,7 @@ Instead of simply extending the timeout indefinitely, this system implements int
 - ✅ Task breakdown prompts
 - ✅ Progress tracking
 - ✅ Status monitoring scripts
+- ✅ Configuration auto-fix (removes invalid keys)
 - ✅ Comprehensive documentation
 
 ### Installation
@@ -71,7 +72,12 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw-vi.gateway.p
 
 **Check system status:**
 ```bash
-./check-status.sh
+~/.openclaw/scripts/check-status.sh
+```
+
+**Fix configuration errors:**
+```bash
+~/.openclaw/scripts/fix-config.sh
 ```
 
 **In chat:**
@@ -108,6 +114,7 @@ The system configures both OpenClaw instances with:
 
 - `smart-task-manager.sh` - Main optimization script
 - `check-status.sh` - Status monitoring script
+- `fix-config.sh` - Configuration auto-fix script
 - `smart-task.skill.json` - Skill definition
 - `TASK_BREAKDOWN.md` - Task decomposition prompt template
 - `DOCUMENTATION.md` - Complete documentation (Chinese)

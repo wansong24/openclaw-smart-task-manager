@@ -123,6 +123,7 @@ download_files() {
     # 下载脚本
     curl -fsSL "$base_url/smart-task-manager.sh" -o "$scripts_dir/smart-task-manager.sh"
     curl -fsSL "$base_url/check-status.sh" -o "$scripts_dir/check-status.sh"
+    curl -fsSL "$base_url/fix-config.sh" -o "$scripts_dir/fix-config.sh"
     curl -fsSL "$base_url/smart-task.skill.json" -o "$scripts_dir/smart-task.skill.json"
 
     # 下载文档
@@ -132,6 +133,7 @@ download_files() {
     # 添加执行权限
     chmod +x "$scripts_dir/smart-task-manager.sh"
     chmod +x "$scripts_dir/check-status.sh"
+    chmod +x "$scripts_dir/fix-config.sh"
 
     log_success "文件下载完成"
 }
@@ -142,6 +144,12 @@ optimize_config() {
     local scripts_dir="$instance_dir/scripts"
 
     log_info "优化配置 $instance_dir..."
+
+    # 先修复配置错误
+    if [ -f "$scripts_dir/fix-config.sh" ]; then
+        log_info "修复配置错误..."
+        bash "$scripts_dir/fix-config.sh"
+    fi
 
     # 运行优化脚本
     OPENCLAW_STATE_DIR="$instance_dir" bash "$scripts_dir/smart-task-manager.sh"
