@@ -75,6 +75,11 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw-vi.gateway.p
 ~/.openclaw/scripts/check-status.sh
 ```
 
+**Test configuration validity:**
+```bash
+~/.openclaw/scripts/test-config.sh
+```
+
 **Fix configuration errors:**
 ```bash
 ~/.openclaw/scripts/fix-config.sh
@@ -115,9 +120,11 @@ The system configures both OpenClaw instances with:
 - `smart-task-manager.sh` - Main optimization script
 - `check-status.sh` - Status monitoring script
 - `fix-config.sh` - Configuration auto-fix script
+- `test-config.sh` - Configuration validation test
 - `smart-task.skill.json` - Skill definition
 - `TASK_BREAKDOWN.md` - Task decomposition prompt template
 - `DOCUMENTATION.md` - Complete documentation (Chinese)
+- `CONFIG_FIX_GUIDE.md` - Configuration error fix guide
 
 ### Best Practices Sources
 
